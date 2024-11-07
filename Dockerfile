@@ -1,9 +1,13 @@
 # Start with the base image from Docker Hub
 FROM runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
 
-# Install additional Python packages
-RUN pip install --no-cache-dir gdown xu2net segmentation-refinement && \
+RUN apt-get update && \
+    apt-get install unzip && \
+    curl https://rclone.org/install.sh | bash && \
+    git clone https://github.com/xuebinqin/U-2-Net.git workspace && \
+    pip install --no-cache-dir gdown xu2net segmentation-refinement && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # pull in google drive images
 COPY ./pre_start.sh /pre_start.sh
+CMD start.sh
