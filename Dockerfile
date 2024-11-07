@@ -2,7 +2,7 @@
 FROM runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends unzip curl git && \
+    apt-get install -y --no-install-recommends unzip curl git darktable && \
     curl https://rclone.org/install.sh | bash && \
     pip install --no-cache-dir gdown segmentation-refinement && \
     apt-get remove -y git curl && \
